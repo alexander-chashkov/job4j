@@ -5,8 +5,13 @@ package ru.job4j.calculate;
 *	@version 0.0.0.1
 */
 public class Calculate {
-	public String echo (String value) {
-		return String.format("%s %s %s", value, value, value);
+	/**
+	* Method echo.
+	* @param name Your name.
+	* @return Echo plus your name.
+	*/
+	public String echo(String name) {
+		return "Echo, echo, echo : " + name;
 	}
 	/**
 	* main
@@ -14,6 +19,6 @@ public class Calculate {
 	*/
 	public static void main (String []args){
 		Calculate calc = new Calculate ();
-		System.out.println(calc.echo("aah"));
+		System.out.println(calc.echo("Alexander Chashkov"));
 	}
 }
