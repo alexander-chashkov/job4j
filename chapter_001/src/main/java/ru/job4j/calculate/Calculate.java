@@ -17,8 +17,8 @@ public class Calculate {
 	* main
 	* @param args - args
 	*/
-	public static void main (String []args){
-		Calculate calc = new Calculate ();
+	public static void main(String[] args) {
+		Calculate calc = new Calculate();
 		System.out.println(calc.echo("Alexander Chashkov"));
 	}
 }
