@@ -19,7 +19,7 @@ public class ConverterTest {
     @Test
     public void when60RubleToDollarThen1() {
         Converter converter = new Converter();
-        int result = converter.rubleToDollar(converter.dollarRate);
+        int result = converter.rubleToDollar(60);
         int expected = 1;
         assertThat(result, is(expected));
     }
