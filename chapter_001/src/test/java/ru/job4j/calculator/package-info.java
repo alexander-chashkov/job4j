@@ -1,5 +1,7 @@
 /**
- * Package for calculatorTest task.
+ * Package for
+ * calculatorTest task,
+ * FitTest task
  *
  * @author Alexander Chashkov
  * @version 0.0.0.1

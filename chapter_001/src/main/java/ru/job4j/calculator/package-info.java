@@ -1,5 +1,7 @@
 /**
- * Package for calculator task.
+ * Package for
+ * calculator task (Calculator class)
+ * ideal weight task (Fit class)
  *
  * @author Alexander Chashkov
  * @version 0.0.0.1
