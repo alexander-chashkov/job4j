@@ -34,4 +34,14 @@ public class MaxTest {
         int result = maxim.max(8, 25);
         assertThat(result, is(25));
     }
+
+    /**
+     * test max(?, ?, ?)
+     */
+    @Test
+    public void max() {
+        Max maxim = new Max();
+        int result = maxim.max(21, 44, 95);
+        assertThat(result, is(95));
+    }
 }
