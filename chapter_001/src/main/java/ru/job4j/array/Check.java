@@ -11,14 +11,16 @@ public class Check {
      * @return true is mono array else false
      */
     public boolean mono(boolean[] data) {
-        boolean result = true;
+        boolean result = false;
         if (data.length > 1) {
             for (int i = 0; i <= data.length / 2; i++) {
-                if (data[i] != data[i + 1]) {
-                    result = false;
-                    break;
+                result = data[i] == data[i + 1];
+                if (!result) {
+                    return result;
                 }
             }
+        } else {
+            return !result;
         }
         return result;
     }
