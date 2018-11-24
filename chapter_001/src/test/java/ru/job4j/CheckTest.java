@@ -77,4 +77,15 @@ public class CheckTest {
         boolean result = check.mono(input);
         assertThat(result, is(true));
     }
+
+    /**
+     * test false seven element
+     */
+    @Test
+    public void whenDataMonoSevenElement() {
+        Check check = new Check();
+        boolean[] input = new boolean[] {false, false, false, false, false, false, true};
+        boolean result = check.mono(input);
+        assertThat(result, is(false));
+    }
 }
