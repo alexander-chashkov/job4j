@@ -25,3 +25,8 @@ target
 out
 .idea
 *.iml
+*.html
+*.css
+*.js
+
+package-list
