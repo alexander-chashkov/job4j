@@ -6,10 +6,14 @@ package ru.job4j.array;
  * @since 2018.11.27
  */
 public class MatrixCheck {
+    /**
+     * @param data массив
+     * @return true если на диаганалях все элементы true или false
+     */
     public boolean mono(boolean[][] data) {
         boolean result = true;
-        for (int i = 0; i < data.length; i++) {
-            if (data[0][0] != data[i][i] || data[0][0] != data[i][data.length - 1 - i]) {
+        for (int i = 1; i < data.length; i++) {
+            if (data[0][0] != data[i][i] || data[0][data.length - 1] != data[i][data.length - 1 - i]) {
                 return false;
             }
         }
