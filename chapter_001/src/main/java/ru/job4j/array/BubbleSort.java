@@ -11,19 +11,13 @@ public class BubbleSort {
      * @return отсортированный массив
      */
     public int[] sort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            int min = array[i];
-            int minI = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < min) {
-                    min = array[j];
-                    minI = j;
+        for (int j = 0; j < array.length; j++) {
+            for (int i = 0; i < array.length - 1 - j; i++) {
+                if (array[i] > array[i + 1]) {
+                    int tmp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = tmp;
                 }
-            }
-            if (i != minI) {
-                int tmp = array[i];
-                array[i] = array[minI];
-                array[minI] = tmp;
             }
         }
         return array;
