@@ -76,7 +76,7 @@ public class Logic {
                 sumHor += table[i][j];
                 sumVert += table[j][i];
             }
-            if (table[0].length == sumHor || sumVert == table.length ) {
+            if (table[0].length == sumHor || sumVert == table.length) {
                 return true;
             }
             sumHor = 0;
