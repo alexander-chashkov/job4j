@@ -20,6 +20,7 @@ public class ArrayDuplicate {
                     array[i] = array[array.length - k - 1];
                     array[array.length - k - 1] = tmp;
                     k++;
+                    i--;
                 }
             }
         }

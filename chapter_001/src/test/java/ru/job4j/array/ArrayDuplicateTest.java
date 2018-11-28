@@ -34,4 +34,13 @@ public class ArrayDuplicateTest {
         String[] expect = {"Крокодил", "Мир", "Кот", "Собака", "Привет", "Человек"};
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void whenRemoveDuplicatesThenArrayWithoutDuplicate3() {
+        ArrayDuplicate arrayd = new ArrayDuplicate();
+        String[] result = {"Крокодил","Крокодил","Крокодил","Крокодил","Крокодил","Крокодил","Крокодил",};
+        result = arrayd.remove(result);
+        String[] expect = {"Крокодил",};
+        assertThat(result, is(expect));
+    }
 }
