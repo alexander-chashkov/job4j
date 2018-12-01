@@ -38,9 +38,9 @@ public class ArrayDuplicateTest {
     @Test
     public void whenRemoveDuplicatesThenArrayWithoutDuplicate3() {
         ArrayDuplicate arrayd = new ArrayDuplicate();
-        String[] result = {"Крокодил","Крокодил","Крокодил","Крокодил","Крокодил","Крокодил","Крокодил",};
+        String[] result = {"Крокодил", "Крокодил", "Крокодил", "Крокодил", "Крокодил", "Крокодил", "Крокодил", };
         result = arrayd.remove(result);
-        String[] expect = {"Крокодил",};
+        String[] expect = {"Крокодил", };
         assertThat(result, is(expect));
     }
 }
