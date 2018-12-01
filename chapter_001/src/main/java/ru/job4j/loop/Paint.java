@@ -9,6 +9,12 @@ import java.util.function.BiPredicate;
  */
 public class Paint {
 
+    /**
+     * @param height Высота пирамиды
+     * @param weight Ширина пирамиды
+     * @param predict условие построения
+     * @return часть готовой пирамиды
+     */
     private String loopBy(int height, int weight, BiPredicate<Integer, Integer> predict) {
         StringBuilder screen = new StringBuilder();
         for (int row = 0; row != height; row++) {

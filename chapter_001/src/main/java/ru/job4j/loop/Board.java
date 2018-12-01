@@ -9,7 +9,7 @@ public class Board {
     /**
      * @param width ширина доски
      * @param height высота доски
-     * @return рзметка доски
+     * @return разметка доски
      */
     public String paint(int width, int height) {
         StringBuilder screen = new StringBuilder();

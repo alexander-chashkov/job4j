@@ -7,15 +7,12 @@ package ru.job4j.max;
  * @version 0.0.0.1
  * @since 2018.11.17
  */
-
-
 public class Max {
 
     /**
      * constr
      */
     public Max() {
-
     }
     /**
      * @param first number 1

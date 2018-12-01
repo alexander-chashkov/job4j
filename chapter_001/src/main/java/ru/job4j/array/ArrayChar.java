@@ -11,7 +11,6 @@ public class ArrayChar {
 
     public ArrayChar(String line) {
         this.data = line.toCharArray();
-
     }
 
     /**
@@ -29,7 +28,6 @@ public class ArrayChar {
                 if (!result) {
                     return result;
                 }
-
             }
         } else {
             return result;
