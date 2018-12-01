@@ -15,4 +15,11 @@ public class Profession {
      * профессия
      */
     private String profession;
+
+    /**
+     * @return имя
+     */
+    public String getName() {
+        return this.name;
+    }
 }
