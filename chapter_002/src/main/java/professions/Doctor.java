@@ -1,4 +1,4 @@
-package Professions;
+package professions;
 /**
  * @author Alexander Chashkov
  * @version 0.0.0.1

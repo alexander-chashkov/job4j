@@ -52,22 +52,26 @@ public class Tracker {
     /**
      * @param id идентификатор заявки для замены
      * @param item заявка для замены
+     * @return true - прошла замена
      */
-    public void replace(String id, Item item) {
-        Item repl = this.findById(id);
-        repl.setName(item.getName());
-        repl.setDesc(item.getName());
-        repl.setCreated(item.getCreated());
-        repl.setComments(item.getComments());
+    public boolean replace(String id, Item item) {
+        boolean result = false;
+        for (int i = 0; i < this.position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                item.setId(this.items[i].getId());
+                this.items[i] = item;
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
      * @return копия всех непустых заявок
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        System.arraycopy(this.items, 0, result, 0, this.position);
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
@@ -82,23 +86,24 @@ public class Tracker {
                 tmp[posit++] = item;
             }
         }
-        Item[] result = new Item[posit];
-        System.arraycopy(tmp, 0, result, 0, posit);
-        return result;
+        return Arrays.copyOf(tmp, posit);
     }
 
     /**
      * @param id идентификатор для удаления заявки
+     * @return true - прошло удаление
      */
-    public void delete(String id) {
-        int i;
-        for (i = 0; i <= this.position; i++) {
+    public boolean delete(String id) {
+        boolean result = false;
+        for (int i = 0; i <= this.position; i++) {
             if (this.items[i].getId().equals(id)) {
+                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
+                this.items[position] = null;
+                position--;
+                result = true;
                 break;
             }
         }
-        System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
-        this.items[position] = null;
-        position--;
+        return result;
     }
 }
