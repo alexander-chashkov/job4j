@@ -9,5 +9,7 @@ public class Teacher extends Profession {
     /**
      * @param st студент для обучения
      */
-    public void teach (Student st) {}
+    public void teach(Student st) {
+
+    }
 }

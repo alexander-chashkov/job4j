@@ -16,7 +16,7 @@ public class TrackerTest {
      * @param number номер заявки для тестирования
      * @return заявка
      */
-    private Item initItem(int number){
+    private Item initItem(int number) {
         String[] comments = new String[1];
         comments[0] = "comennts test" + number;
         return new Item("test" + number, "testDescr" + number, 123L, comments);

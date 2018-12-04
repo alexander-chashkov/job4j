@@ -44,7 +44,7 @@ public class Item {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
@@ -68,7 +68,7 @@ public class Item {
         this.comments = comments;
     }
 
-    public String[] getComments(){
+    public String[] getComments() {
         return this.comments;
     }
 
@@ -83,12 +83,12 @@ public class Item {
     @Override
     public String toString() {
         Instant instant = Instant.ofEpochMilli(this.getCreated());
-        return "------------------------ Заявка -------------------\n" +
-        "------------------------ Идентификатор : " + this.getId() + "\n" +
-        "Название : " + this.getName() + "\n" +
-        "Описание : " + this.getDesc() + "\n" +
-        "Дата и время создания: " + instant.toString() + "\n" +
-        "Комментарии : " + Arrays.toString(this.getComments()) + "\n" +
-        "---------------------------------------------------";
+        return "------------------------ Заявка -------------------\n"
+                + "------------------------ Идентификатор : " + this.getId() + "\n"
+                + "Название : " + this.getName() + "\n"
+                + "Описание : " + this.getDesc() + "\n"
+                + "Дата и время создания: " + instant.toString() + "\n"
+                + "Комментарии : " + Arrays.toString(this.getComments()) + "\n"
+                + "---------------------------------------------------";
     }
 }

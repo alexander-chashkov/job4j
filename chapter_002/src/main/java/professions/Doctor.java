@@ -9,7 +9,7 @@ public class Doctor extends Profession {
     /**
      * @param pat пациент для лечения
      */
-    public Diagnose heal(Patient pat){
+    public Diagnose heal(Patient pat) {
         return null;
     }
 }

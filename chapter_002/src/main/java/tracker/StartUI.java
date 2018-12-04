@@ -194,7 +194,7 @@ public class StartUI {
                 this.findById();
             } else if (FIND_BY_NAME.equals(answer)) {
                 this.findByName();
-            }else if (EXIT.equals(answer)) {
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             }
         }

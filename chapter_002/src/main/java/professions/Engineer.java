@@ -9,6 +9,6 @@ public class Engineer extends Profession {
     /**
      * @param h дом для постройки
      */
-    public void build (House h) {
+    public void build(House h) {
     }
 }
