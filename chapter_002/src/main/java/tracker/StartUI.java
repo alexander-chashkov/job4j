@@ -1,8 +1,5 @@
 package tracker;
 
-import java.time.Instant;
-import java.util.Arrays;
-
 /**
  * @author Chashkov Alexander
  * Start user interface
@@ -86,14 +83,7 @@ public class StartUI {
      */
     private void showItem(Item item) {
         if (item != null) {
-            System.out.println("------------------------ Заявка -------------------");
-            System.out.println("------------------------ Идентификатор : " + item.getId());
-            System.out.println("Название : " + item.getName());
-            System.out.println("Описание : " + item.getDesc());
-            Instant instant = Instant.ofEpochMilli(item.getCreated());
-            System.out.println("Дата и время создания: " + instant.toString());
-            System.out.println("Комментарии : " + Arrays.toString(item.getComments()));
-            System.out.println("---------------------------------------------------");
+            System.out.println(item.toString());
         }
     }
 

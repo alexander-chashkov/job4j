@@ -1,5 +1,7 @@
 package tracker;
 
+import java.time.Instant;
+import java.util.Arrays;
 /**
  *  @version 0.0.0.1
  *  @since 2018.12.02
@@ -76,5 +78,17 @@ public class Item {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        Instant instant = Instant.ofEpochMilli(this.getCreated());
+        return "------------------------ Заявка -------------------\n" +
+        "------------------------ Идентификатор : " + this.getId() + "\n" +
+        "Название : " + this.getName() + "\n" +
+        "Описание : " + this.getDesc() + "\n" +
+        "Дата и время создания: " + instant.toString() + "\n" +
+        "Комментарии : " + Arrays.toString(this.getComments()) + "\n" +
+        "---------------------------------------------------";
     }
 }
