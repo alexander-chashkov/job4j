@@ -82,13 +82,14 @@ public class Item {
 
     @Override
     public String toString() {
+        String sep = System.lineSeparator();
         Instant instant = Instant.ofEpochMilli(this.getCreated());
-        return "------------------------ Заявка -------------------\n"
-                + "------------------------ Идентификатор : " + this.getId() + "\n"
-                + "Название : " + this.getName() + "\n"
-                + "Описание : " + this.getDesc() + "\n"
-                + "Дата и время создания: " + instant.toString() + "\n"
-                + "Комментарии : " + Arrays.toString(this.getComments()) + "\n"
+        return "------------------------ Заявка -------------------" + sep
+                + "------------------------ Идентификатор : " + this.getId() + sep
+                + "Название : " + this.getName() + sep
+                + "Описание : " + this.getDesc() + sep
+                + "Дата и время создания: " + instant.toString() + sep
+                + "Комментарии : " + Arrays.toString(this.getComments()) + sep
                 + "---------------------------------------------------";
     }
 }
