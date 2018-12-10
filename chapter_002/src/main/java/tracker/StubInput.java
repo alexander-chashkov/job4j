@@ -21,4 +21,20 @@ public class StubInput implements Input {
     public String ask(String question) {
         return answers[this.position++];
     }
+
+    /**
+     * @param question запрос, приглашение на ввод данных
+     * @return введеные данные
+     */
+    public int ask(String question, int[] range) {
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for(int value : range) {
+            if (value == key) {
+                exist = true;
+                break;
+            }
+        }
+        return exist ? key : -1;
+    }
 }
