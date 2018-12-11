@@ -1,5 +1,8 @@
 package tracker;
 
+import java.util.Arrays;
+import java.util.function.Consumer;
+
 /**
  *  @version 0.0.0.1
  *  @since 2018.12.04
@@ -27,18 +30,6 @@ public class StubInput implements Input {
      * @return введеные данные
      */
     public int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
-        boolean exist = false;
-        for (int value : range) {
-            if (value == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (exist) {
-            return key;
-        } else {
-            throw new MenuOutException("Команда вне диапазона меню! ");
-        }
+        return Integer.valueOf(this.ask(question));
     }
 }
