@@ -5,7 +5,21 @@ package tracker;
  *  @author Chashkov Alexander
  *  public class ValidateInput extends ConsoleInput {
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements  Input {
+    /**
+     * источник
+     */
+    private final Input input;
+
+    public ValidateInput(final Input input) {
+        this.input = input;
+    }
+
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
+
     /**
      * @param question запрос, приглашение на ввод данных
      * @return введеные данные
@@ -15,7 +29,7 @@ public class ValidateInput extends ConsoleInput {
         int result = -1;
         do {
             try {
-                result = super.ask(question, range);
+                result = this.input.ask(question, range);
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Ошибка. Введите верные данные!");
