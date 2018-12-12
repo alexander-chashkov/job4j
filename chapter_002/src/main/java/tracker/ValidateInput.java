@@ -60,7 +60,7 @@ public class ValidateInput implements  Input {
      * @param key ключ меню
      * @return true - проверки успешно пройдены
      */
-    private boolean hasAccess(final String key) {
+    private boolean hasAccess(final int key) {
          this.validates.forEach(action -> action.accept(key));
          return true;
     }
@@ -69,15 +69,9 @@ public class ValidateInput implements  Input {
     /**
      * список проверок на валидность
      */
-    private final List<Consumer<String>> validates = Arrays.asList(
+    private final List<Consumer<Integer>> validates = Arrays.asList(
             key -> {
-                if (!this.isDigit(key)) {
-                    throw new NumberFormatException("Не верные данные!");
-                }
-            },
-            key -> {
-                int keyInt = Integer.valueOf(key);
-                if (!this.checkKey(keyInt)) {
+                if (!this.checkKey(key)) {
                     throw new MenuOutException("Команда вне диапазона меню! ");
                 }
             }
@@ -91,10 +85,10 @@ public class ValidateInput implements  Input {
     public int ask(String question, int[] range) {
         this.range = range;
         boolean invalid = true;
-        String result = "";
+        int result = 0;
         do {
             try {
-                result = this.input.ask(question);
+                result = this.input.ask(question, range);
                 invalid = !this.hasAccess(result);
             } catch (NumberFormatException nfe) {
                 System.out.println("Ошибка. Введите верные данные!");
@@ -102,6 +96,6 @@ public class ValidateInput implements  Input {
                 System.out.println("Введите команду из диапазона меню");
             }
         } while (invalid);
-        return Integer.valueOf(result);
+        return result;
     }
 }
