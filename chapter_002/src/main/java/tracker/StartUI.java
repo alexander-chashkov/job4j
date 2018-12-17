@@ -10,6 +10,10 @@ import java.util.List;
  * @since 2018.12.03
  */
 public class StartUI {
+    /**
+     * флаг выхода
+     */
+    private boolean working;
     private int[] ranges = new int[Actions.values().length];
     /**
      * Получение данных от пользователя.
@@ -33,6 +37,14 @@ public class StartUI {
         for (int i = 0; i < ranges.length; i++) {
             ranges[i] = Actions.values()[i].ordinal();
         }
+        this.working = true;
+    }
+
+    /**
+     * остановить программу
+     */
+    public void stop() {
+        this.working = false;
     }
 
     /**
@@ -41,16 +53,14 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
         }
-        boolean exit = false;
-        while (!exit) {
+        while (this.working) {
             menu.show();
             int answer = input.ask("select:" + range.toString(), this.ranges);
             menu.select(answer);
-            exit = answer == Actions.EXIT.ordinal();
         }
     }
     public static void main(String[] args) {
