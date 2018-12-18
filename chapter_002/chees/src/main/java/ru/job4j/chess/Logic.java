@@ -3,6 +3,10 @@ package ru.job4j.chess;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
 /**
  * Класс проверки хода фигур
  *
@@ -29,24 +33,21 @@ public class Logic {
         return result;
     }
 
+
     public boolean move(Cell source, Cell dest)  throws ImposibleMoveException, OccupiedWayException, FigureNotFoundException {
-        boolean rst = false;
         int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (this.isOccupiedWay(steps)) {
-                throw new OccupiedWayException("Путь занят фигурами! Ход не возможен.");
-            }
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
-            } else {
-                throw new ImposibleMoveException("Фигура " + figures.getClass() + " не может так ходить!");
-            }
-        } else {
+        if (index == -1) {
             throw new FigureNotFoundException("Фигура не найдена!");
         }
-        return rst;
+        Cell[] steps = this.figures[index].way(source, dest);
+        if (this.isOccupiedWay(steps)) {
+            throw new OccupiedWayException("Путь занят фигурами! Ход не возможен.");
+        }
+        if (!(steps.length > 0 && steps[steps.length - 1].equals(dest))) {
+            throw new ImposibleMoveException("Фигура " + figures.getClass() + " не может так ходить!");
+        }
+        this.figures[index] = this.figures[index].copy(dest);
+        return true;
     }
 
     public void clean() {
