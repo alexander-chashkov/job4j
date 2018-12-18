@@ -18,11 +18,25 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
+    private boolean isOccupiedWay(Cell[] way) {
+        boolean result = false;
+        for (Cell cell : way) {
+            if (this.findBy(cell) != -1) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
     public boolean move(Cell source, Cell dest)  throws ImposibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
+            if (this.isOccupiedWay(steps)) {
+                throw new OccupiedWayException("Путь занят фигурами! Ход не возможен.");
+            }
             if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);

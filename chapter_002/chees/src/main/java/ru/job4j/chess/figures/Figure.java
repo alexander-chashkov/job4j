@@ -2,8 +2,14 @@ package ru.job4j.chess.figures;
 
 import ru.job4j.chess.ImposibleMoveException;
 
+/**
+ * @author Chashkov Alexander
+ * @version 0.0.0.1
+ * @since 2018.12.17
+ * Figure
+ */
 public abstract class Figure implements IFigure {
-
+    private final int lengthBoard = (int) Math.sqrt(Cell.values().length);
     /**
      * позиция фигуры
      */
@@ -11,6 +17,9 @@ public abstract class Figure implements IFigure {
 
     public Cell position() {
         return this.position;
+    }
+    public int getLengthBoard() {
+        return this.lengthBoard;
     }
 
     /**
