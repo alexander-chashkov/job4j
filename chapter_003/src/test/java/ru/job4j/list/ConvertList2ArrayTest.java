@@ -1,12 +1,17 @@
 package ru.job4j.list;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import ru.job4j.list.ConvertList2Array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 /**
  * class ConvertList2ArrayTest
  * @author Alexander Chashkov
@@ -56,5 +61,20 @@ public class ConvertList2ArrayTest {
         int[][] result = list.toArray(Arrays.asList(), 7);
         int[][] expect = {{}, {}, {}, {}, {}, {}, {}};
         assertThat(result, is(expect));
+    }
+
+    /**
+     * convert test
+     */
+    @Test
+    public void convert12and3456Then123456() {
+        List list = new ArrayList();
+        list.add(new int[]{1, 2});
+        list.add(new int[]{3, 4, 5, 6});
+        ConvertList2Array convertList = new ConvertList2Array();
+        List<Integer> result = convertList.convert(list);
+        List<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertTrue(CollectionUtils.isEqualCollection(result, expected));
+
     }
 }
