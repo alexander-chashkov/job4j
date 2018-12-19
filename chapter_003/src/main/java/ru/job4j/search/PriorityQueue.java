@@ -1,6 +1,9 @@
 package ru.job4j.search;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
+
 /**
  * class PriorityQueue
  * @author Alexander Chashkov
@@ -11,8 +14,6 @@ public class PriorityQueue {
     /**
      * список задач
      */
-    private int indexUrgent = 0;
-    private int indexMiddle = 0;
 
     private LinkedList<Task> tasks = new LinkedList<>();
 
@@ -23,16 +24,14 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        if (task.getPriority() == 5) {
-            tasks.add(tasks.size(), task);
+        int index = 0;
+        ListIterator<Task> iter = this.tasks.listIterator();
+        while (iter.hasNext()) {
+            if (iter.next().getPriority() <= task.getPriority()) {
+                index = iter.nextIndex();
+            }
         }
-        if (task.getPriority() == 1) {
-            tasks.add(indexUrgent++, task);
-            indexMiddle++;
-        }
-        if (task.getPriority() == 3) {
-            tasks.add(indexMiddle++, task);
-        }
+        this.tasks.add(index, task);
     }
 
     public Task take() {
