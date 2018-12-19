@@ -19,7 +19,7 @@ public class ConvertList2ArrayTest {
      */
     @Test
     public void when7ElementsThen9() {
-        ConvertList2Array list = new ConvertList2Array(0);
+        ConvertList2Array list = new ConvertList2Array();
         int[][] result = list.toArray(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 3);
         int[][] expect = {
                 {1, 2, 3},
@@ -34,7 +34,7 @@ public class ConvertList2ArrayTest {
      */
     @Test
     public void when15ElementsThen21() {
-        ConvertList2Array list = new ConvertList2Array(99);
+        ConvertList2Array list = new ConvertList2Array();
         int[][] result = list.toArray(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), 7);
         int[][] expect = {
                 {1, 2, 3},
@@ -42,8 +42,8 @@ public class ConvertList2ArrayTest {
                 {7, 8, 9},
                 {10, 11, 12},
                 {13, 14, 15},
-                {99, 99, 99},
-                {99, 99, 99}
+                {0, 0, 0},
+                {0, 0, 0}
         };
         assertThat(result, is(expect));
     }
@@ -52,7 +52,7 @@ public class ConvertList2ArrayTest {
      */
     @Test
     public void when0ElementsThen0() {
-        ConvertList2Array list = new ConvertList2Array(99);
+        ConvertList2Array list = new ConvertList2Array();
         int[][] result = list.toArray(Arrays.asList(), 7);
         int[][] expect = {{}, {}, {}, {}, {}, {}, {}};
         assertThat(result, is(expect));

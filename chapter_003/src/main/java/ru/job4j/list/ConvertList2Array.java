@@ -8,11 +8,6 @@ import java.util.List;
  * @since 2018.12.19
  */
 public class ConvertList2Array {
-    private final int fillNumber;
-
-    public ConvertList2Array(int fillNumber) {
-        this.fillNumber = fillNumber;
-    }
 
     public int[][] toArray(List<Integer> list, int rows) {
         int cells = 0;
@@ -27,11 +22,6 @@ public class ConvertList2Array {
             if (idx2 >= cells) {
                 idx2 = 0;
                 idx++;
-            }
-        }
-        for (int j = array.length - 1; j >= idx; j--) {
-            for (int i = array[idx].length - 1; i >= idx2; i--) {
-                array[j][i] = this.fillNumber;
             }
         }
         return array;
