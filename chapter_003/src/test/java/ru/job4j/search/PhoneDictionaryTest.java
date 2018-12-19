@@ -31,7 +31,7 @@ public class PhoneDictionaryTest {
         phones.add(new Person("Petr", "Arsentev", "534872", "BryanskTown"));
         phones.add(new Person("Alexandro", "Chashkov", "705453", "OrenburgTown"));
         List<Person> persons = phones.find("Alexandro");
-        assertThat(persons.iterator().next().getAddress(), is("OrenTown"));
+        assertThat(persons.iterator().next().getAddress(), is("OrenburgTown"));
     }
 
     /**

@@ -15,6 +15,7 @@ public class PriorityQueueTest {
         queue.put(new Task("low", 5));
         queue.put(new Task("urgent", 1));
         queue.put(new Task("middle3", 3));
+        queue.put(new Task("highNew", 2));
         queue.put(new Task("urgent1", 1));
         queue.put(new Task("urgent2", 1));
         queue.put(new Task("low2", 5));
@@ -39,5 +40,24 @@ public class PriorityQueueTest {
         queue.take();
         Task result = queue.take();
         assertThat(result.getDesc(), is("middle1"));
+    }
+
+    /**
+     * poll high highNew
+     */
+    @Test
+    public void whenHigherPriorityThenHighNew() {
+        PriorityQueue queue = new PriorityQueue();
+        queue.put(new Task("highNew", 2));
+        queue.put(new Task("middle1", 3));
+        queue.put(new Task("middle2", 3));
+        queue.put(new Task("low", 5));
+        queue.put(new Task("urgent", 1));
+        queue.put(new Task("middle3", 3));
+        queue.put(new Task("low2", 5));
+        queue.put(new Task("low3", 5));
+        queue.take();
+        Task result = queue.take();
+        assertThat(result.getDesc(), is("highNew"));
     }
 }
