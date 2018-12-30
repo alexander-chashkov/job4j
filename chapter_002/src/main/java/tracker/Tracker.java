@@ -11,11 +11,7 @@ public class Tracker {
     /**
      * Заявки
      */
-    private Item[] items = new Item[100];
-    /**
-     * позиция по заявкам
-     */
-    private int position = 0;
+    private ArrayList<Item> items = new ArrayList<>();
 
     /**
      * @return  идентификатор
@@ -30,7 +26,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -56,10 +52,10 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                item.setId(this.items[i].getId());
-                this.items[i] = item;
+        for (Item itemTmp : this.items) {
+            if (itemTmp.getId().equals(id)) {
+                item.setId(itemTmp.getId());
+                this.items.set(this.items.indexOf(itemTmp), item);
                 result = true;
                 break;
             }
@@ -70,23 +66,23 @@ public class Tracker {
     /**
      * @return копия всех непустых заявок
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public ArrayList<Item> findAll() {
+        return this.items;
     }
 
     /**
      * @param key имя заявки для поиска
      * @return найденые заявки
      */
-    public Item[] findByName(String key) {
-        Item[] tmp = new Item[100];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> tmp = new ArrayList();
         int posit = 0;
         for (Item item : this.items) {
             if (item != null && item.getName().equals(key)) {
-                tmp[posit++] = item;
+                tmp.add(item);
             }
         }
-        return Arrays.copyOf(tmp, posit);
+        return tmp;
     }
 
     /**
@@ -95,11 +91,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i <= this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
-                this.items[position] = null;
-                position--;
+        for (Item item : this.items) {
+            if (item.getId().equals(id)) {
+                this.items.remove(this.items.indexOf(item));
                 result = true;
                 break;
             }

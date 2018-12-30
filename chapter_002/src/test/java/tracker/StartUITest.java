@@ -1,4 +1,5 @@
 package tracker;
+import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
@@ -55,7 +57,7 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"0", "test1", "test description 1", "comments1", "6"});
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test1"));
+        assertThat(tracker.findAll().get(0).getName(), is("test1"));
     }
 
     /**
@@ -67,7 +69,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test2", "description test2", 122L, new String[]{"comments2"}));
         Input input = new StubInput(new String[] {"2", item.getId(), "replaceTest1", "replace test description 1", "replace comments1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("replaceTest1"));
+        assertThat(tracker.findAll().get(0).getName(), is("replaceTest1"));
     }
 
     /**
@@ -80,7 +82,8 @@ public class StartUITest {
         Item item2 = tracker.add(new Item("test4", "description tes4", 1224L, new String[]{"comments4"}));
         Input input = new StubInput(new String[] {"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        Item[] items = new Item[]{item2};
+        ArrayList<Item> items = new ArrayList();
+        items.add(item2);
         assertThat(tracker.findAll(), is(items));
     }
 

@@ -92,4 +92,12 @@ public class Item {
                 + "Комментарии : " + Arrays.toString(this.getComments()) + sep
                 + "---------------------------------------------------";
     }
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(this.getId());
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return (this.toString().equals(obj.toString()));
+    }
 }

@@ -1,8 +1,11 @@
 package tracker;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  *  @version 0.0.0.1
@@ -29,7 +32,7 @@ public class TrackerTest {
         Item item1 = this.initItem(1);
         Tracker tt = new Tracker();
         tt.add(item1);
-        assertThat(tt.findAll()[0], is(item1));
+        assertTrue(tt.findAll().get(0).equals(item1));
     }
 
     /**
@@ -42,10 +45,10 @@ public class TrackerTest {
         Tracker tt = new Tracker();
         tt.add(item1);
         tt.add(item2);
-        Item[] rslt = new Item[2];
-        rslt[0] = item1;
-        rslt[1] = item2;
-        assertThat(tt.findAll(), is(rslt));
+        ArrayList<Item> rslt = new ArrayList();
+        rslt.add(item1);
+        rslt.add(item2);
+        assertTrue(tt.findAll().equals(rslt));
     }
 
     /**
@@ -56,7 +59,7 @@ public class TrackerTest {
         Item item1 = this.initItem(1);
         Tracker tt = new Tracker();
         tt.add(item1);
-        assertThat(tt.findById(item1.getId()), is(item1));
+        assertTrue(tt.findById(item1.getId()).equals(item1));
     }
 
     /**
@@ -69,7 +72,7 @@ public class TrackerTest {
         Tracker tt = new Tracker();
         tt.add(item1);
         tt.replace(item1.getId(), item55);
-        assertThat(tt.findById(item1.getId()).getName(), is(item55.getName()));
+        assertTrue(tt.findById(item55.getId()).equals(item55));
     }
 
     /**
@@ -82,9 +85,9 @@ public class TrackerTest {
         Tracker tt = new Tracker();
         tt.add(item1);
         tt.add(item4);
-        Item[] rslt1 = new Item[1];
-        rslt1[0] = item1;
-        assertThat(tt.findByName("test1"), is(rslt1));
+        ArrayList<Item> rslt1 = new ArrayList();
+        rslt1.add(item1);
+        assertTrue(tt.findByName("test1").equals(rslt1));
     }
 
     /**
@@ -101,10 +104,10 @@ public class TrackerTest {
         tt.add(item6);
         tt.add(item6);
         tt.delete(item4.getId());
-        Item[] rslt1 = new Item[3];
-        rslt1[0] = item1;
-        rslt1[1] = item6;
-        rslt1[2] = item6;
-        assertThat(tt.findAll(), is(rslt1));
+        ArrayList<Item> rslt1 = new ArrayList<>();
+        rslt1.add(item1);
+        rslt1.add(item6);
+        rslt1.add(item6);
+        assertTrue(tt.findAll().equals(rslt1));
     }
 }
