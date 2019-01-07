@@ -11,7 +11,7 @@ public class Tracker {
     /**
      * Заявки
      */
-    private ArrayList<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     /**
      * @return  идентификатор
@@ -52,13 +52,15 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
+        int idx = 0;
         for (Item itemTmp : this.items) {
             if (itemTmp.getId().equals(id)) {
-                item.setId(itemTmp.getId());
-                this.items.set(this.items.indexOf(itemTmp), item);
+                item.setId(id);
+                this.items.set(idx, item);
                 result = true;
                 break;
             }
+            idx++;
         }
         return result;
     }
@@ -66,7 +68,7 @@ public class Tracker {
     /**
      * @return копия всех непустых заявок
      */
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return this.items;
     }
 
@@ -74,8 +76,8 @@ public class Tracker {
      * @param key имя заявки для поиска
      * @return найденые заявки
      */
-    public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> tmp = new ArrayList();
+    public List<Item> findByName(String key) {
+        List<Item> tmp = new ArrayList<>();
         int posit = 0;
         for (Item item : this.items) {
             if (item != null && item.getName().equals(key)) {
@@ -91,9 +93,10 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (Item item : this.items) {
+        for (Iterator<Item> it = this.items.iterator(); it.hasNext();) {
+            Item item = it.next();
             if (item.getId().equals(id)) {
-                this.items.remove(this.items.indexOf(item));
+                it.remove();
                 result = true;
                 break;
             }

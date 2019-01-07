@@ -2,6 +2,7 @@ package tracker;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -45,7 +46,7 @@ public class TrackerTest {
         Tracker tt = new Tracker();
         tt.add(item1);
         tt.add(item2);
-        ArrayList<Item> rslt = new ArrayList();
+        List<Item> rslt = new ArrayList<>();
         rslt.add(item1);
         rslt.add(item2);
         assertTrue(tt.findAll().equals(rslt));
@@ -85,7 +86,7 @@ public class TrackerTest {
         Tracker tt = new Tracker();
         tt.add(item1);
         tt.add(item4);
-        ArrayList<Item> rslt1 = new ArrayList();
+        List<Item> rslt1 = new ArrayList();
         rslt1.add(item1);
         assertTrue(tt.findByName("test1").equals(rslt1));
     }
@@ -104,7 +105,7 @@ public class TrackerTest {
         tt.add(item6);
         tt.add(item6);
         tt.delete(item4.getId());
-        ArrayList<Item> rslt1 = new ArrayList<>();
+        List<Item> rslt1 = new ArrayList<>();
         rslt1.add(item1);
         rslt1.add(item6);
         rslt1.add(item6);

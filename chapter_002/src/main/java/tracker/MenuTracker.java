@@ -209,7 +209,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("-------------Поиск заявки --------------------------");
             String name = input.ask("Введите название заявки: ");
-            ArrayList<Item> items = tracker.findByName(name);
+            List<Item> items = tracker.findByName(name);
             if (items.size() > 0) {
                 System.out.println("-------------заявка -----------------------------");
                 for (Item item : items) {
