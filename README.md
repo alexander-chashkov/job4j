@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/alexander-chashkov/job4j.svg?branch=master)](https://travis-ci.org/alexander-chashkov/job4j)
 # job4j
 http://job4j.ru
 Цели:
