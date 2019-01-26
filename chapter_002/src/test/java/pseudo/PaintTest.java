@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
 import static org.hamcrest.core.Is.is;
@@ -35,9 +36,9 @@ public class PaintTest {
      * устанавливает поток вывода на буффер
      */
     @Before
-    public void loadOutput() {
+    public void loadOutput() throws UnsupportedEncodingException {
         System.out.println("execute before method");
-        System.setOut(new PrintStream(this.out));
+        System.setOut(new PrintStream(this.out, false, "UTF-8"));
     }
 
     /**
@@ -53,7 +54,7 @@ public class PaintTest {
      * test draw square
      */
     @Test
-    public void whenDrawSquare() {
+    public void whenDrawSquare() throws UnsupportedEncodingException {
         new Paint().draw(new Square());
         StringBuilder expected = new StringBuilder();
         expected.append("█████████").append(this.sep);
@@ -62,18 +63,18 @@ public class PaintTest {
         expected.append("█           █").append(this.sep);
         expected.append("█           █").append(this.sep);
         expected.append("█████████").append(this.sep).append(this.sep);
-        assertThat(new String(out.toByteArray()), is(expected.toString()));
+        assertThat(new String(out.toByteArray(), "UTF-8"), is(expected.toString()));
     }
 
     @Test
-    public void whenDrawTriangle() {
+    public void whenDrawTriangle() throws UnsupportedEncodingException {
         new Paint().draw(new Triangle());
         StringBuilder expected = new StringBuilder();
         expected.append("      █").append(this.sep);
         expected.append("    █   █").append(this.sep);
         expected.append("  █       █").append(this.sep);
         expected.append("█████████").append(this.sep).append(this.sep);
-        assertThat(new String(out.toByteArray()), is(expected.toString()));
+        assertThat(new String(out.toByteArray(), "UTF-8"), is(expected.toString()));
     }
 
 }
