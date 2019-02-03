@@ -1,4 +1,4 @@
-package ru.job4j.departmentSort;
+package ru.job4j.departmentsort;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -27,15 +27,15 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2\\SK1\\SSK2");
         sd.clearResult();
         sd.showElements(sd.getDepartments().getChildDps(), "");
-        String result = "K1" + System.lineSeparator() +
-            "K1\\SK1" + System.lineSeparator() +
-            "K1\\SK1\\SSK1" + System.lineSeparator() +
-            "K1\\SK1\\SSK2" + System.lineSeparator() +
-            "K1\\SK2" + System.lineSeparator() +
-            "K2" + System.lineSeparator() +
-            "K2\\SK1" + System.lineSeparator() +
-            "K2\\SK1\\SSK1" + System.lineSeparator() +
-            "K2\\SK1\\SSK2" + System.lineSeparator();
+        String result = "K1" + System.lineSeparator()
+                + "K1\\SK1" + System.lineSeparator()
+                + "K1\\SK1\\SSK1" + System.lineSeparator()
+                + "K1\\SK1\\SSK2" + System.lineSeparator()
+                + "K1\\SK2" + System.lineSeparator()
+                + "K2" + System.lineSeparator()
+                + "K2\\SK1" + System.lineSeparator()
+                + "K2\\SK1\\SSK1" + System.lineSeparator()
+                + "K2\\SK1\\SSK2" + System.lineSeparator();
         assertEquals(result, sd.getResult());
     }
 
@@ -56,15 +56,15 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2\\SK1\\SSK2");
         sd.clearResult();
         sd.showElementsDesc(sd.getDepartments().getChildDps(), "");
-        String result = "K2" + System.lineSeparator() +
-            "K2\\SK1" + System.lineSeparator() +
-            "K2\\SK1\\SSK2" + System.lineSeparator() +
-            "K2\\SK1\\SSK1" + System.lineSeparator() +
-            "K1" + System.lineSeparator() +
-            "K1\\SK2" + System.lineSeparator() +
-            "K1\\SK1" + System.lineSeparator() +
-            "K1\\SK1\\SSK2" + System.lineSeparator() +
-            "K1\\SK1\\SSK1" + System.lineSeparator();
+        String result = "K2" + System.lineSeparator()
+                + "K2\\SK1" + System.lineSeparator()
+                + "K2\\SK1\\SSK2" + System.lineSeparator()
+                + "K2\\SK1\\SSK1" + System.lineSeparator()
+                + "K1" + System.lineSeparator()
+                + "K1\\SK2" + System.lineSeparator()
+                + "K1\\SK1" + System.lineSeparator()
+                + "K1\\SK1\\SSK2" + System.lineSeparator()
+                + "K1\\SK1\\SSK1" + System.lineSeparator();
         assertEquals(result, sd.getResult());
     }
 
@@ -87,24 +87,24 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2\\SK1\\SSK2");
         sd.clearResult();
         sd.showElementsDesc(sd.getDepartments().getChildDps(), "");
-        String result = "K2" + System.lineSeparator() +
-                "K2\\SK1" + System.lineSeparator() +
-                "K2\\SK1\\SSK2" + System.lineSeparator() +
-                "K2\\SK1\\SSK1" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster2" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster2\\server44" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster2\\server44\\t1" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster2\\server44\\t1\\g7" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster2\\server44\\t1\\g7\\p15" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster3" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster3\\server44" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster1" + System.lineSeparator() +
-                "K2\\SK1\\SSK1\\cluster1\\server45" + System.lineSeparator() +
-                "K1" + System.lineSeparator() +
-                "K1\\SK2" + System.lineSeparator() +
-                "K1\\SK1" + System.lineSeparator() +
-                "K1\\SK1\\SSK2" + System.lineSeparator() +
-                "K1\\SK1\\SSK1" + System.lineSeparator();
+        String result = "K2" + System.lineSeparator()
+                + "K2\\SK1" + System.lineSeparator()
+                + "K2\\SK1\\SSK2" + System.lineSeparator()
+                + "K2\\SK1\\SSK1" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster2" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster2\\server44" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster2\\server44\\t1" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster2\\server44\\t1\\g7" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster2\\server44\\t1\\g7\\p15" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster3" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster3\\server44" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster1" + System.lineSeparator()
+                + "K2\\SK1\\SSK1\\cluster1\\server45" + System.lineSeparator()
+                + "K1" + System.lineSeparator()
+                + "K1\\SK2" + System.lineSeparator()
+                + "K1\\SK1" + System.lineSeparator()
+                + "K1\\SK1\\SSK2" + System.lineSeparator()
+                + "K1\\SK1\\SSK1" + System.lineSeparator();
         assertEquals(result, sd.getResult());
     }
 

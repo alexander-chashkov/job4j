@@ -1,4 +1,4 @@
-package ru.job4j.departmentSort;
+package ru.job4j.departmentsort;
 
 import java.util.*;
 /**
