@@ -13,17 +13,16 @@ public class SorterDepartmentTest {
     @Test
     /**
      * test1 as task asc
+     * тесты как и задания
      */
     public void whenAsTask() {
         SorterDepartment sd = new SorterDepartment();
-        sd.addDepartment("K2\\SK1\\SSK1");
-        sd.addDepartment("K1");
         sd.addDepartment("K1\\SK1");
+        sd.addDepartment("K1\\SK2");
         sd.addDepartment("K1\\SK1\\SSK1");
         sd.addDepartment("K1\\SK1\\SSK2");
-        sd.addDepartment("K1\\SK2");
         sd.addDepartment("K2");
-        sd.addDepartment("K2\\SK1");
+        sd.addDepartment("K2\\SK1\\SSK1");
         sd.addDepartment("K2\\SK1\\SSK2");
         sd.clearResult();
         sd.showElements(sd.getDepartments().getChildDps(), "");
@@ -42,17 +41,16 @@ public class SorterDepartmentTest {
     @Test
     /**
      * test2 as task asc
+     * тесты как и задания
      */
     public void whenAsTaskDesc() {
         SorterDepartment sd = new SorterDepartment();
-        sd.addDepartment("K2\\SK1\\SSK1");
-        sd.addDepartment("K1");
         sd.addDepartment("K1\\SK1");
+        sd.addDepartment("K1\\SK2");
         sd.addDepartment("K1\\SK1\\SSK1");
         sd.addDepartment("K1\\SK1\\SSK2");
-        sd.addDepartment("K1\\SK2");
         sd.addDepartment("K2");
-        sd.addDepartment("K2\\SK1");
+        sd.addDepartment("K2\\SK1\\SSK1");
         sd.addDepartment("K2\\SK1\\SSK2");
         sd.clearResult();
         sd.showElementsDesc(sd.getDepartments().getChildDps(), "");

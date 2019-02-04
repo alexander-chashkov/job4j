@@ -33,6 +33,7 @@ public class SorterDepartment  {
     }
 
     /**
+     * Добавляет подразделение
      * @param nameDep название подразделения
      */
     public void addDepartment(String nameDep) {
@@ -50,10 +51,16 @@ public class SorterDepartment  {
 
     }
 
+    /**
+     * @return подразделения
+     */
     public Department getDepartments() {
         return this.departments;
     }
 
+    /**
+     * @return результат сортировки
+     */
     public String getResult() {
          return this.res;
     }
@@ -61,12 +68,11 @@ public class SorterDepartment  {
     /**
      * @param t  подразделение в иерархии
      * @param st  tmp string
-     *  asc
+     *  создает результат сортировки по возрастанию
      */
     public void showElements(Map<String, Department> t, String st) {
         for (String str : t.keySet()) {
             this.res = this.res + (st.length() == 0 ? str : st + "\\" + str) + System.lineSeparator();
-          //  System.out.println(st.length() == 0 ? str : st + "\\" + str);
             String strTemp = st.length() == 0 ? str : st + "\\" + str;
             showElements(t.get(str).getChildDps(), strTemp);
         }
@@ -75,6 +81,7 @@ public class SorterDepartment  {
      * @param t  подразделение в иерархии
      * @param st  tmp string
      * desc
+     * создает результат сортировки по убыванию
      */
     public void showElementsDesc(Map<String, Department> t, String st) {
         List<String> l = new ArrayList(t.keySet());
@@ -86,6 +93,9 @@ public class SorterDepartment  {
         }
     }
 
+    /**
+     * очищает результаты сортировки
+     */
     public void clearResult() {
         this.res = "";
     }
