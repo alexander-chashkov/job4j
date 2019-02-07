@@ -52,7 +52,7 @@ public class Bank {
      * @param passport паспорт
      * @param account аккаунт
      */
-    public void deleteAccountFromUser(String passport, Account account){
+    public void deleteAccountFromUser(String passport, Account account) {
         List<Account> accs = this.userAccounts.get(new User("", passport));
         accs.remove(accs.indexOf(account));
     }
@@ -62,7 +62,7 @@ public class Bank {
      * @param passport паспорт
      * @return аккаунты пользователя
      */
-    public List<Account> getUserAccounts (String passport) {
+    public List<Account> getUserAccounts(String passport) {
         return this.userAccounts.get(new User("", passport));
     }
 
@@ -74,14 +74,14 @@ public class Bank {
      * @param amount колво
      * @return true - перевод состоялся иначе false
      */
-    public boolean transferMoney (String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
         List<Account> accsSrc = this.getUserAccounts(srcPassport);
         List<Account> accsDst = this.getUserAccounts(destPassport);
         Account srcAcc = new Account(srcRequisite, 0);
         Account dstAcc = new Account(dstRequisite, 0);
-        if (accsSrc != null && accsDst != null && accsSrc.indexOf(srcAcc) != -1 && accsDst.indexOf(dstAcc) != -1 &&
-                accsSrc.get(accsSrc.indexOf(new Account(srcRequisite, 0))).getValue() >= amount) {
+        if (accsSrc != null && accsDst != null && accsSrc.indexOf(srcAcc) != -1 && accsDst.indexOf(dstAcc) != -1
+                && accsSrc.get(accsSrc.indexOf(new Account(srcRequisite, 0))).getValue() >= amount) {
             double amSrc = accsSrc.get(accsSrc.indexOf(srcAcc)).getValue();
             double amDst = accsDst.get(accsDst.indexOf(dstAcc)).getValue();
             accsSrc.get(accsSrc.indexOf(srcAcc)).setValue(amSrc - amount);

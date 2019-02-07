@@ -18,7 +18,7 @@ public class Account {
      */
     private String requisites;
 
-    public Account (String requisites, double value) {
+    public Account(String requisites, double value) {
         this.setValue(value);
         this.setRequisites(requisites);
     }
@@ -42,8 +42,12 @@ public class Account {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Account account = (Account) o;
         return Objects.equals(requisites, account.requisites);
     }
