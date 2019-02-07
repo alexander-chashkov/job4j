@@ -77,6 +77,17 @@ public class SorterDepartment  {
             showElements(t.get(str).getChildDps(), strTemp);
         }
     }
+
+    /**
+     * @param t  подразделение в иерархии
+     *  создает результат сортировки по возрастанию
+     */
+    public void showElementsVer2(Map<String, Department> t) {
+        for (String str : t.keySet()) {
+            this.res = str + System.lineSeparator();
+
+        }
+    }
     /**
      * @param t  подразделение в иерархии
      * @param st  tmp string
