@@ -115,7 +115,7 @@ public class Bank {
         List<Account> accsSrc = this.getUserAccounts(srcPassport);
         List<Account> accsDst = this.getUserAccounts(destPassport);
         Account srcAcc = this.findAccountByReq(srcPassport, srcRequisite);
-        Account dstAcc = this.findAccountByReq(destPassport, srcRequisite);
+        Account dstAcc = this.findAccountByReq(destPassport, dstRequisite);
         if (accsSrc != null && accsDst != null && accsSrc.indexOf(srcAcc) != -1 && accsDst.indexOf(dstAcc) != -1
                 && accsSrc.get(accsSrc.indexOf(new Account(srcRequisite, 0))).getValue() >= amount) {
             double amSrc = accsSrc.get(accsSrc.indexOf(srcAcc)).getValue();
