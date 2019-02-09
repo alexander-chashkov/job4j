@@ -33,6 +33,7 @@ public class BankTest {
     public void whenTransferNotFoundAcc() {
         Bank bnk = new Bank();
         bnk.addAccountToUser("56", new Account("01", 90));
+        bnk.addAccountToUser("56", new Account("01", 190));
         bnk.addAccountToUser("63", new Account("09", 40));
         assertEquals(false,  bnk.transferMoney("56", "02", "63", "09", 10));
     }

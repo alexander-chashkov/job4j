@@ -16,9 +16,22 @@ public class User {
      * паспорт
      */
     private String pasport;
+
+    public User(String pasport) {
+        this.pasport = pasport;
+    }
+
     public User(String name, String pasport) {
         this.name = name;
         this.pasport = pasport;
+    }
+
+    public String getPasport() {
+        return this.pasport;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override

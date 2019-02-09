@@ -9,15 +9,13 @@ import java.util.*;
  */
 public class Department {
     private String name;
-    private Map<String, Department> dps;
     public Department(String name) {
         this.name = name;
-        this.dps = new HashMap<>();
     }
 
     @Override
     public String toString() {
-        String res = "Department{name=" + this.name + "}";
+        String res = this.name;
         return res;
 
     }
@@ -30,9 +28,5 @@ public class Department {
     @Override
     public int hashCode() {
         return Objects.hashCode(this.toString());
-    }
-
-    public Map<String, Department> getChildDps() {
-        return this.dps;
     }
 }

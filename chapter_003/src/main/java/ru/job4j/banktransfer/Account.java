@@ -27,6 +27,10 @@ public class Account {
         this.value = value;
     }
 
+    public String getRequisites() {
+        return this.requisites;
+    }
+
     public void setRequisites(String requisites) {
         this.requisites = requisites;
     }

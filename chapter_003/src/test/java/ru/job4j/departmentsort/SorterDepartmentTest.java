@@ -24,8 +24,6 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2");
         sd.addDepartment("K2\\SK1\\SSK1");
         sd.addDepartment("K2\\SK1\\SSK2");
-        sd.clearResult();
-        sd.showElements(sd.getDepartments().getChildDps(), "");
         String result = "K1" + System.lineSeparator()
                 + "K1\\SK1" + System.lineSeparator()
                 + "K1\\SK1\\SSK1" + System.lineSeparator()
@@ -35,7 +33,7 @@ public class SorterDepartmentTest {
                 + "K2\\SK1" + System.lineSeparator()
                 + "K2\\SK1\\SSK1" + System.lineSeparator()
                 + "K2\\SK1\\SSK2" + System.lineSeparator();
-        assertEquals(result, sd.getResult());
+        assertEquals(result, sd.getAscDeps());
     }
 
     @Test
@@ -52,8 +50,6 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2");
         sd.addDepartment("K2\\SK1\\SSK1");
         sd.addDepartment("K2\\SK1\\SSK2");
-        sd.clearResult();
-        sd.showElementsDesc(sd.getDepartments().getChildDps(), "");
         String result = "K2" + System.lineSeparator()
                 + "K2\\SK1" + System.lineSeparator()
                 + "K2\\SK1\\SSK2" + System.lineSeparator()
@@ -63,12 +59,12 @@ public class SorterDepartmentTest {
                 + "K1\\SK1" + System.lineSeparator()
                 + "K1\\SK1\\SSK2" + System.lineSeparator()
                 + "K1\\SK1\\SSK1" + System.lineSeparator();
-        assertEquals(result, sd.getResult());
+        assertEquals(result, sd.getDescDeps());
     }
 
     @Test
     /**
-     * test2 as task asc
+     * test2 as task desc
      */
     public void whenTest() {
         SorterDepartment sd = new SorterDepartment();
@@ -83,8 +79,6 @@ public class SorterDepartmentTest {
         sd.addDepartment("K2\\SK1\\SSK1\\cluster2\\server44\\t1\\g7\\p15");
         sd.addDepartment("K2\\SK1\\SSK1\\cluster3\\server44");
         sd.addDepartment("K2\\SK1\\SSK2");
-        sd.clearResult();
-        sd.showElementsDesc(sd.getDepartments().getChildDps(), "");
         String result = "K2" + System.lineSeparator()
                 + "K2\\SK1" + System.lineSeparator()
                 + "K2\\SK1\\SSK2" + System.lineSeparator()
@@ -103,7 +97,7 @@ public class SorterDepartmentTest {
                 + "K1\\SK1" + System.lineSeparator()
                 + "K1\\SK1\\SSK2" + System.lineSeparator()
                 + "K1\\SK1\\SSK1" + System.lineSeparator();
-        assertEquals(result, sd.getResult());
+        assertEquals(result, sd.getDescDeps());
     }
 
 
