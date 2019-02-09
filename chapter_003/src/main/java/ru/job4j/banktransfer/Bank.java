@@ -90,7 +90,9 @@ public class Bank {
      */
     public void deleteAccountFromUser(String passport, Account account) {
         List<Account> accs = this.userAccounts.get(this.findUserByPassport(passport));
-        accs.remove(accs.indexOf(account));
+        if (accs != null && accs.indexOf(account) > -1) {
+            accs.remove(accs.indexOf(account));
+        }
     }
 
     /**
@@ -112,16 +114,13 @@ public class Bank {
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        List<Account> accsSrc = this.getUserAccounts(srcPassport);
-        List<Account> accsDst = this.getUserAccounts(destPassport);
         Account srcAcc = this.findAccountByReq(srcPassport, srcRequisite);
         Account dstAcc = this.findAccountByReq(destPassport, dstRequisite);
-        if (accsSrc != null && accsDst != null && accsSrc.indexOf(srcAcc) != -1 && accsDst.indexOf(dstAcc) != -1
-                && accsSrc.get(accsSrc.indexOf(new Account(srcRequisite, 0))).getValue() >= amount) {
-            double amSrc = accsSrc.get(accsSrc.indexOf(srcAcc)).getValue();
-            double amDst = accsDst.get(accsDst.indexOf(dstAcc)).getValue();
-            accsSrc.get(accsSrc.indexOf(srcAcc)).setValue(amSrc - amount);
-            accsDst.get(accsDst.indexOf(dstAcc)).setValue(amDst + amount);
+        if (srcAcc != null && dstAcc != null && srcAcc.getValue() >= amount) {
+            double amSrc = srcAcc.getValue();
+            double amDst = dstAcc.getValue();
+            srcAcc.setValue(amSrc - amount);
+            dstAcc.setValue(amDst + amount);
             result = true;
         }
         return result;

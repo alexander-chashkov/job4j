@@ -25,6 +25,19 @@ public class BankTest {
         assertEquals(80, bnk.getUserAccounts("56").get(0).getValue(), 0.001);
     }
 
+    /**
+     * тест удаление
+     */
+    @Test
+    public void whenDeleteUser() {
+        Bank bnk = new Bank();
+        bnk.addAccountToUser("56", new Account("01", 90));
+        bnk.addAccountToUser("63", new Account("09", 40));
+        assertEquals(1, bnk.getUserAccounts("63").size());
+        bnk.deleteAccountFromUser("63", bnk.findAccountByReq("63", "09"));
+        assertEquals(0, bnk.getUserAccounts("63").size());
+    }
+
 
     /**
      * тесты перевод несуществующий аккаунт
