@@ -21,15 +21,8 @@ public class Bank {
      * @return найденый юзер иначе null
      */
     public User findUserByPassport(String passport) {
-        Iterator<User> it = this.userAccounts.keySet().iterator();
-        User usrResult = null;
-        while (it.hasNext()) {
-            User tmpUsr = it.next();
-            if (tmpUsr != null && tmpUsr.getPasport().equals(passport)) {
-                usrResult = tmpUsr;
-                break;
-            }
-        }
+        User usrResult;
+        usrResult = this.userAccounts.keySet().stream().filter(usr -> usr.getPasport().equals(passport)).findAny().orElse(null);
         return usrResult;
     }
 
@@ -44,12 +37,7 @@ public class Bank {
         Account result = null;
         if (usr != null) {
             List<Account> accs = this.userAccounts.get(usr);
-            for (Account accTemp : accs) {
-                if (accTemp.getRequisites().equals(requisite)) {
-                    result = accTemp;
-                    break;
-                }
-            }
+            result = accs.stream().filter(acc -> acc.getRequisites().equals(requisite)).findAny().orElse(null);
         }
         return result;
     }

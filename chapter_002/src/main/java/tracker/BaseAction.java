@@ -1,5 +1,7 @@
 package tracker;
 
+import java.util.function.Consumer;
+
 public abstract class BaseAction implements UserAction {
     private final int key;
     private final String name;

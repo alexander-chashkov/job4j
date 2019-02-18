@@ -2,6 +2,7 @@ package tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 class DeleteItem extends BaseAction {
     public DeleteItem(int key, String name) {
@@ -38,6 +39,7 @@ public class MenuTracker {
      * события/операции над заявками
      */
     private List<UserAction> actions = new ArrayList<>();
+    private final Consumer<String> output;
 
     /**
      * Конструктор.
@@ -45,9 +47,10 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
@@ -81,10 +84,10 @@ public class MenuTracker {
     }
 
     public void show() {
-        System.out.println("Меню.");
+        output.accept("Меню.");
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }
@@ -107,13 +110,13 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Добавление новой заявки --------------");
+            output.accept("------------ Добавление новой заявки --------------");
             String name = input.ask("Введите имя заявки :");
             String desc = input.ask("Введите описание заявки :");
             String[] comments = {input.ask("Введите комментарии к заявке :")};
             Item item = new Item(name, desc, System.currentTimeMillis(), comments);
             tracker.add(item);
-            System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+            output.accept("------------ Новая заявка с getId : " + item.getId() + "-----------");
         }
     }
 
@@ -128,10 +131,10 @@ public class MenuTracker {
              */
             @Override
             public void execute(Input input, Tracker tracker) {
-                System.out.println("------------------------ Заявки -------------------");
+                output.accept("------------------------ Заявки -------------------");
                 for (Item item : tracker.findAll()) {
                     if (item != null) {
-                        System.out.println(item.toString());
+                        output.accept(item.toString());
                     }
                 }
             }
@@ -155,26 +158,26 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("-------------Редактирование заявки -----------------");
+            output.accept("-------------Редактирование заявки -----------------");
             String id = input.ask("Введите идентификатор заявки: ");
             Item item = tracker.findById(id);
             if (item == null) {
-                System.out.println("Заявка с таким идентификатором не найдена!");
+                output.accept("Заявка с таким идентификатором не найдена!");
             } else {
-                System.out.println(item.toString());
+                output.accept(item.toString());
                 item.setName(input.ask("Введите новое имя для заявки: "));
                 item.setDesc(input.ask("Введите новое описание для заявки: "));
                 item.setComments(new String[]{input.ask("Введите комментарии для заявки: ")});
                 if (tracker.replace(id, item)) {
-                    System.out.println("Заявка отредактирована.");
+                    output.accept("Заявка отредактирована.");
                 } else {
-                    System.out.println("Ошибка. Изменения не применены.");
+                    output.accept("Ошибка. Изменения не применены.");
                 }
             }
         }
     }
 
-    private static class FindItemById extends BaseAction {
+    private  class FindItemById extends BaseAction {
         public FindItemById(int key, String name) {
             super(key, name);
         }
@@ -185,13 +188,13 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("-------------Поиск заявки --------------------------");
+            output.accept("-------------Поиск заявки --------------------------");
             String id = input.ask("Введите идентификатор заявки: ");
             Item item = tracker.findById(id);
             if (item != null) {
-                System.out.println(item.toString());
+                output.accept(item.toString());
             } else {
-                System.out.println("Заявка с индентификатором " + id + " не найдена!");
+                output.accept("Заявка с индентификатором " + id + " не найдена!");
             }
         }
     }
@@ -207,18 +210,18 @@ public class MenuTracker {
          */
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("-------------Поиск заявки --------------------------");
+            output.accept("-------------Поиск заявки --------------------------");
             String name = input.ask("Введите название заявки: ");
             List<Item> items = tracker.findByName(name);
             if (items.size() > 0) {
-                System.out.println("-------------заявка -----------------------------");
+                output.accept("-------------заявка -----------------------------");
                 for (Item item : items) {
                     if (item != null) {
-                        System.out.println(item.toString());
+                        output.accept(item.toString());
                     }
                 }
             } else {
-                System.out.println("Заявки с таким именем не найдены. ");
+                output.accept("Заявки с таким именем не найдены. ");
             }
         }
     }

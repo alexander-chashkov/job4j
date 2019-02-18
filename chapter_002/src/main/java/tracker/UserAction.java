@@ -1,5 +1,7 @@
 package tracker;
 
+import java.util.function.Consumer;
+
 /**
  * @author Chashkov Alexander
  * @version 0.0.0.1
