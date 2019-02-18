@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -22,18 +23,25 @@ public class StartUITest {
     /**
      * содержит дефолтный вывод в консоль.
      */
-    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(out);
 
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
     /**
      * буфер для результата.
      */
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
 
     private final String sep = System.lineSeparator();
 
     @Before
     public void loadOutput() {
-        System.setOut(new PrintStream(this.out));
+        //System.setOut(new PrintStream(this.out));
     }
 
     /**
@@ -41,12 +49,12 @@ public class StartUITest {
      */
     @After
     public void backOutput() {
-        System.setOut(this.stdout);
+        //System.setOut(this.stdout);
     }
 
     public static void main(String[] args) {
         Input input = new StubInput(new String[] {"1", "6"});
-        new StartUI(input, new Tracker()).init();
+        new StartUI(input, new Tracker(), System.out::println).init();
     }
 
     /**
@@ -56,7 +64,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[] {"0", "test1", "test description 1", "comments1", "6"});
         Tracker tracker = new Tracker();
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test1"));
     }
 
@@ -68,7 +76,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test2", "description test2", 122L, new String[]{"comments2"}));
         Input input = new StubInput(new String[] {"2", item.getId(), "replaceTest1", "replace test description 1", "replace comments1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("replaceTest1"));
     }
 
@@ -81,8 +89,8 @@ public class StartUITest {
         Item item = tracker.add(new Item("test3", "description tes3", 1223L, new String[]{"comments3"}));
         Item item2 = tracker.add(new Item("test4", "description tes4", 1224L, new String[]{"comments4"}));
         Input input = new StubInput(new String[] {"3", item.getId(), "6"});
-        new StartUI(input, tracker).init();
-        ArrayList<Item> items = new ArrayList();
+        new StartUI(input, tracker, output).init();
+        ArrayList<Item> items = new ArrayList<>();
         items.add(item2);
         assertThat(tracker.findAll(), is(items));
     }
@@ -126,7 +134,7 @@ public class StartUITest {
     public void whenMenuItemThenShowMenu() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[] {"6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         StringBuilder expected = new StringBuilder();
         expected.append(this.getExpectedMenu());
         assertThat(new String(this.out.toByteArray()), is(expected.toString()));
@@ -142,7 +150,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test5", "description tes5", 156623L, new String[]{"comments5"}));
         Item item2 = tracker.add(new Item("test6", "description tes6", 1656623L, new String[]{"comments6"}));
         Input input = new StubInput(new String[] {"1", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         StringBuilder expected = new StringBuilder();
         expected.append(this.getExpectedMenu().append("------------------------ Заявки -------------------").append(this.sep));
         expected.append(this.getExpectedItem(item).append(this.getExpectedItem(item2)));

@@ -2,6 +2,7 @@ package tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Chashkov Alexander
@@ -15,6 +16,7 @@ public class StartUI {
      */
     private boolean working;
     private int[] ranges = new int[Actions.values().length];
+    private final Consumer<String> output;
     /**
      * Получение данных от пользователя.
      */
@@ -31,13 +33,14 @@ public class StartUI {
      * @param input   ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         for (int i = 0; i < ranges.length; i++) {
             ranges[i] = Actions.values()[i].ordinal();
         }
         this.working = true;
+        this.output = output;
     }
 
     /**
@@ -51,7 +54,7 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, this.output);
         List<Integer> range = new ArrayList<>();
         menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
@@ -64,6 +67,6 @@ public class StartUI {
         }
     }
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }
