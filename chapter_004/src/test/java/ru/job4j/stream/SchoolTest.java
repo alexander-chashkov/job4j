@@ -26,7 +26,9 @@ public class SchoolTest {
         ls.add(new Student(90));
         ls.add(new Student(10));
         ls.add(new Student(80));
-        List<Student> res = school.collect(ls, school.isAClass());
+        List<Student> res = school.collect(ls, st ->  {
+            return st.getScore() >= 70 & st.getScore() <= 100;
+        });
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(90));
         expected.add(new Student(80));
@@ -45,7 +47,9 @@ public class SchoolTest {
         ls.add(new Student(90));
         ls.add(new Student(10));
         ls.add(new Student(80));
-        List<Student> res = school.collect(ls, school.isBClass());
+        List<Student> res = school.collect(ls, st ->  {
+            return st.getScore() >= 50 & st.getScore() < 70;
+        });
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(50));
         assertTrue(res.toString().equals(expected.toString()));
@@ -63,7 +67,9 @@ public class SchoolTest {
         ls.add(new Student(90));
         ls.add(new Student(10));
         ls.add(new Student(80));
-        List<Student> res = school.collect(ls, school.isVClass());
+        List<Student> res = school.collect(ls, st ->  {
+            return st.getScore() >= 0 & st.getScore() < 50;
+        });
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(20));
         expected.add(new Student(10));
