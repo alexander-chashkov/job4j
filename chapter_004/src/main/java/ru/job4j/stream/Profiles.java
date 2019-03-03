@@ -24,8 +24,8 @@ public class Profiles {
      */
     List<Address> getUniqueSortedAddresses(List<Profile> profiles) {
 
-        return profiles.stream().map(Profile::getAddress).distinct().sorted(
+        return profiles.stream().map(Profile::getAddress).sorted(
                 (Address o1, Address o2) -> o1.getCity().compareTo(o2.getCity())
-        ).collect(Collectors.toList());
+        ).distinct().collect(Collectors.toList());
     }
 }
