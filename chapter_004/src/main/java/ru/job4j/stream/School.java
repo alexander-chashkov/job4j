@@ -1,7 +1,5 @@
 package ru.job4j.stream;
 
-import com.sun.javafx.collections.MappingChange;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
