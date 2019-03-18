@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class ArrayTest {
     /**
      * тест матрицы 2 на 2
+     *
      */
     @Test
     public void whenArray2x2Then4Elements() {
