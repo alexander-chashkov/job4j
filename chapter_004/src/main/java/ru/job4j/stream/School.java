@@ -28,10 +28,6 @@ public class School {
         return students.stream().filter(predict).collect(Collectors.toList());
     }
 
-    public List<Student> collect(List<Student> students, Predicate<Student> predict) {
-        return students.stream().filter(predict).collect(Collectors.toList());
-    }
-
     public Map<String, Student> collectToMap(List<Student> students) {
         return students.stream().collect(Collectors.toMap(st -> st.getSurname(), st -> st));
     }
