@@ -2,6 +2,8 @@ package ru.job4j;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.assertEquals;
 
 public class ArrayTest {
@@ -33,5 +35,15 @@ public class ArrayTest {
         }
         var expected = "1234567891011121314";
         assertEquals(result.toString(), expected);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testToDoubleException() {
+        int[][] value = {{1}};
+        var ar = new Array(value);
+        int expected = 1;
+        int result = (Integer) ar.next();
+        assertEquals(result, expected);
+        ar.next();
     }
 }

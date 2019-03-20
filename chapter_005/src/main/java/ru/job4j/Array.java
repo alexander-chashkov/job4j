@@ -1,6 +1,8 @@
 package ru.job4j;
 
 import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * @author Alexander Chashkov
@@ -24,6 +26,9 @@ public class Array implements Iterator {
 
     @Override
     public Object next() {
+        if (!this.hasNext()) {
+            throw new NoSuchElementException();
+        }
         if (this.values[indexCol].length - 1 == indexRow) {
             indexRow = 0;
             indexCol++;
