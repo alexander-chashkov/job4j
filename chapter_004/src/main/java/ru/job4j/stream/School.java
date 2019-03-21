@@ -15,13 +15,19 @@ import java.util.stream.Collectors;
 public class School {
 
     public Predicate<Student> isAClass() {
-        return st ->  {return st.getScore() >= 70 & st.getScore() <= 100;};
+        return st -> {
+            return st.getScore() >= 70 & st.getScore() <= 100;
+        };
     }
     public Predicate<Student> isBClass() {
-        return st ->  {return st.getScore() >= 50 & st.getScore() < 70;};
+        return st ->  {
+            return st.getScore() >= 50 & st.getScore() < 70;
+        };
     }
     public Predicate<Student> isVClass() {
-        return st ->  {return st.getScore() >= 0 & st.getScore() < 50;};
+        return st ->  {
+            return st.getScore() >= 0 & st.getScore() < 50;
+        };
     }
 
     public List<Student> collect(List<Student> students, Predicate<Student> predict) {
