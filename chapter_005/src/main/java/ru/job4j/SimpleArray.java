@@ -33,11 +33,14 @@ public class SimpleArray<T> implements  Iterable<T> {
         final Object[] es = elementData;
         T oldValue = (T) es[index];
         final int newSize = size - 1;
+        Object[] newElementData = null;
         if (newSize > index) {
-            System.arraycopy(es, index + 1, es, index, newSize - index);
+            newElementData = new Object[newSize];
+            System.arraycopy(es, 0, newElementData, 0, index);
+            System.arraycopy(es, index + 1, newElementData, index, newSize - index);
         }
         size = newSize;
-        es[size] = null;
+        elementData = newElementData;
         return oldValue;
     }
 
@@ -46,7 +49,7 @@ public class SimpleArray<T> implements  Iterable<T> {
     }
 
     private void rangeCheck(int index) {
-        if (index < 0 || index > this.size) {
+        if (index < 0 || index > curIndex) {
             throw new IndexOutOfBoundsException("index: " + index + " size: " + this.size);
         }
     }
@@ -70,17 +73,12 @@ public class SimpleArray<T> implements  Iterable<T> {
 
 
         public T next() {
-            int i = cursor;
-            if (i >= size) {
+            int prevCursor = cursor;
+            if (prevCursor >= size) {
                 throw new NoSuchElementException();
             }
-            Object[] elementData = SimpleArray.this.elementData;
-            if (i >= elementData.length) {
-                throw new ConcurrentModificationException();
-            }
-            cursor = i + 1;
-            lastRet = i;
-            return (T) elementData[lastRet];
+            cursor = prevCursor + 1;
+            return (T) SimpleArray.this.elementData[prevCursor];
         }
 
         public void remove() {
