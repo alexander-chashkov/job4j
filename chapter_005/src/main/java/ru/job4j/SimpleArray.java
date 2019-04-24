@@ -36,8 +36,15 @@ public class SimpleArray<T> implements  Iterable<T> {
         Object[] newElementData = null;
         if (newSize > index) {
             newElementData = new Object[newSize];
-            System.arraycopy(es, 0, newElementData, 0, index);
-            System.arraycopy(es, index + 1, newElementData, index, newSize - index);
+            es[index] = null;
+            for (var i = 0; i < newElementData.length; i++) {
+                if (i < index) {
+                    newElementData[i] = es[i];
+                }
+                if (i >= index) {
+                    newElementData[i] = es[i + 1];
+                }
+            }
         }
         size = newSize;
         elementData = newElementData;
