@@ -30,24 +30,9 @@ public class SimpleArray<T> implements  Iterable<T> {
 
     public T remove(int index) {
         Objects.checkIndex(index, size);
-        final Object[] es = elementData;
-        T oldValue = (T) es[index];
-        final int newSize = size - 1;
-        Object[] newElementData = null;
-        if (newSize > index) {
-            newElementData = new Object[newSize];
-            es[index] = null;
-            for (var i = 0; i < newElementData.length; i++) {
-                if (i < index) {
-                    newElementData[i] = es[i];
-                }
-                if (i >= index) {
-                    newElementData[i] = es[i + 1];
-                }
-            }
-        }
-        size = newSize;
-        elementData = newElementData;
+        T oldValue = (T) elementData[index];
+        System.arraycopy(elementData, index + 1, elementData, index, size - 1 - index);
+        elementData[--curIndex] = null;
         return oldValue;
     }
 
@@ -75,7 +60,7 @@ public class SimpleArray<T> implements  Iterable<T> {
         }
 
         public boolean hasNext() {
-            return cursor != size;
+            return cursor != curIndex;
         }
 
 
