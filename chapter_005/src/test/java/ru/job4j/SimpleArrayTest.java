@@ -40,20 +40,6 @@ public class SimpleArrayTest {
     }
 
     /**
-     * remove test
-     */
-    @Test
-    public void whenAddNew5ElemStringDelete2ElemThen1245() {
-        sa.remove(2);
-        StringBuilder sb = new StringBuilder();
-        for (String str : sa) {
-            sb.append(str);
-        }
-        String expected = "1245";
-        assertEquals(sb.toString(), expected);
-    }
-
-    /**
      * set / get test
      */
     @Test

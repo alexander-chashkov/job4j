@@ -10,8 +10,8 @@ import java.util.*;
  */
 public class SimpleArray<T> implements  Iterable<T> {
 
-    Object[] elementData;
-    int curIndex = 0;
+    private Object[] elementData;
+    private int curIndex = 0;
     private int size;
 
     public SimpleArray(int size) {
@@ -24,28 +24,14 @@ public class SimpleArray<T> implements  Iterable<T> {
     }
 
     public void set(int index, T model) {
-        rangeCheck(index);
+        Objects.checkIndex(index, curIndex);
         elementData[index] = model;
     }
 
-    public T remove(int index) {
-        Objects.checkIndex(index, size);
-        T oldValue = (T) elementData[index];
-        System.arraycopy(elementData, index + 1, elementData, index, size - 1 - index);
-        elementData[--curIndex] = null;
-        return oldValue;
-    }
-
     public T get(int index) {
+        Objects.checkIndex(index, curIndex);
         return (T) elementData[index];
     }
-
-    private void rangeCheck(int index) {
-        if (index < 0 || index > curIndex) {
-            throw new IndexOutOfBoundsException("index: " + index + " size: " + this.size);
-        }
-    }
-
 
     @Override
     public Iterator<T> iterator() {
@@ -66,24 +52,11 @@ public class SimpleArray<T> implements  Iterable<T> {
 
         public T next() {
             int prevCursor = cursor;
-            if (prevCursor >= size) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             cursor = prevCursor + 1;
             return (T) SimpleArray.this.elementData[prevCursor];
-        }
-
-        public void remove() {
-            if (lastRet < 0) {
-                throw new IllegalStateException();
-            }
-            try {
-                SimpleArray.this.remove(lastRet);
-                cursor = lastRet;
-                lastRet = -1;
-            } catch (IndexOutOfBoundsException ex) {
-                throw new ConcurrentModificationException();
-            }
         }
     }
 
