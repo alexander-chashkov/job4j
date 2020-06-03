@@ -33,16 +33,19 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        return mem.set(findIndexById(id), model) == model;
+        int idx = findIndexById(id);
+        return (idx == -1) ? false : mem.set(idx, model) == model;
     }
 
     @Override
     public boolean delete(String id) {
-        return mem.remove(findIndexById(id)) != null;
+        int idx = findIndexById(id);
+        return (idx == -1) ? false : mem.remove(idx) != null;
     }
 
     @Override
     public T findById(String id) {
-        return mem.get(findIndexById(id));
+        int idx = findIndexById(id);
+        return (idx == -1) ? null : mem.get(idx);
     }
 }

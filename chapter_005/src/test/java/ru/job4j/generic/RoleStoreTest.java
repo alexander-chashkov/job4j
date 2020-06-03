@@ -40,9 +40,10 @@ public class RoleStoreTest {
         assertEquals(role3.getId(), expected);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void whenAdd2ElAndDeleteElThen1El() {
         rs.delete("role1");
         rs.findById("role1");
+        assertEquals(rs.findById("role1"), null);
     }
 }
