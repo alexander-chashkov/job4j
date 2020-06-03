@@ -12,7 +12,7 @@ import java.util.Objects;
  * @since 03.06.2020
  */
 
-public class SimpleArray <T> implements Iterable<T> {
+public class SimpleArray<T> implements Iterable<T> {
     private Object[] container;
     private int idx;
     private int capasity;
@@ -56,14 +56,16 @@ public class SimpleArray <T> implements Iterable<T> {
 
         @Override
         public T next() {
-            if (modCount != modCountWhenCreate)
+            if (modCount != modCountWhenCreate) {
                 throw new ConcurrentModificationException();
+            }
             idxEl++;
             T result = nextElement;
             Objects.checkIndex(idxEl, container.length);
             nextElement = (T) container[idxEl];
-            if (result == null)
-                    throw new NoSuchElementException();
+            if (result == null) {
+                throw new NoSuchElementException();
+            }
             return result;
         }
 
