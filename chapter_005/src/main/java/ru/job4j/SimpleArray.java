@@ -33,6 +33,14 @@ public class SimpleArray<T> implements  Iterable<T> {
         return (T) elementData[index];
     }
 
+    public T remove(int index) {
+        Objects.checkIndex(index, size);
+        T oldValue = (T) elementData[index];
+        System.arraycopy(elementData, index + 1, elementData, index, size - 1 - index);
+        elementData[--curIndex] = null;
+        return oldValue;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Itr();
