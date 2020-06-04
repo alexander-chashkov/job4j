@@ -55,6 +55,13 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return x.value;
     }
 
+    public void deleteLast() {
+        if (head == tail) {
+            head = tail.prev;
+        }
+        tail = tail.prev;
+    }
+
     public SimpleLinkedList() {
         this.idx = -1;
     }
