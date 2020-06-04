@@ -45,13 +45,12 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     class SimpleArrayIterator implements Iterator<T> {
-        private T nextElement;
         private int idxEl;
         private int modCountWhenCreate;
 
         @Override
         public boolean hasNext() {
-            return nextElement != null;
+            return idxEl <= idx;
         }
 
         @Override
@@ -60,18 +59,14 @@ public class SimpleArray<T> implements Iterable<T> {
                 throw new ConcurrentModificationException();
             }
             idxEl++;
-            T result = nextElement;
-            Objects.checkIndex(idxEl, container.length);
-            nextElement = (T) container[idxEl];
-            if (result == null) {
+            if (idx == -1) {
                 throw new NoSuchElementException();
             }
-            return result;
+            return (T) container[idxEl];
         }
 
         public SimpleArrayIterator() {
             this.idxEl = -1;
-            this.nextElement = (T) container[0];
             this.modCountWhenCreate = modCount;
         }
     }
