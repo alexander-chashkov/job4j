@@ -59,7 +59,7 @@ public class SimpleArray<T> implements Iterable<T> {
                 throw new ConcurrentModificationException();
             }
             idxEl++;
-            if (idx == -1) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             return (T) container[idxEl];
