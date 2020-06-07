@@ -13,8 +13,7 @@ public class SimpleStack<T> {
     private int index = -1;
 
     public T pop() {
-        T result = linked.get(index);
-        linked.deleteLast();
+        T result = linked.deleteLast();
         index--;
         return result;
     }
