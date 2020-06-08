@@ -59,4 +59,14 @@ public class SimpleArrayTest {
         array.add("second");
         it.next();
     }
+
+    @Test
+    public void whenAdd100el() {
+        SimpleArray<String> array = new SimpleArray<>();
+        for (int i = 0; i <= 100; i++) {
+            array.add("str" + i);
+        }
+
+        assertThat(array.get(98), is("str98"));
+    }
 }

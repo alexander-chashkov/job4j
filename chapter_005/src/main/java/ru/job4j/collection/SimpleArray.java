@@ -1,9 +1,6 @@
 package ru.job4j.collection;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Alexander Chashkov
@@ -24,7 +21,12 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        container[++idx] = model;
+        idx++;
+        if (idx == capasity) {
+            capasity = capasity * 2;
+            container = Arrays.copyOf(container, capasity);
+        }
+        container[idx] = model;
         modCount++;
     }
 
@@ -50,7 +52,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return idxEl <= idx;
+            return idxEl != idx ;
         }
 
         @Override
@@ -58,10 +60,10 @@ public class SimpleArray<T> implements Iterable<T> {
             if (modCount != modCountWhenCreate) {
                 throw new ConcurrentModificationException();
             }
-            idxEl++;
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
+            idxEl++;
             return (T) container[idxEl];
         }
 
