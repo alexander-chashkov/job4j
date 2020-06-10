@@ -46,6 +46,10 @@ public class SimpleArray<T> implements Iterable<T> {
         return new SimpleArrayIterator();
     }
 
+    public int size() {
+        return idx;
+    }
+
     class SimpleArrayIterator implements Iterator<T> {
         private int idxEl;
         private int modCountWhenCreate;
