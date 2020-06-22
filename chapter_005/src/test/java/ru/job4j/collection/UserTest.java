@@ -36,9 +36,9 @@ public class UserTest {
         User usr2 = new User("Alex", 2, new GregorianCalendar(2020, 5 , 21));
         Map<User, Object> map = new HashMap<User, Object>();
         map.put(usr, "1");
-        map.put(usr2, "1");
+        map.put(usr2, "2");
 
         System.out.println(map.toString());
-        assertNotEquals(usr.hashCode(), usr2.hashCode());
+        assertEquals(usr.hashCode(), usr2.hashCode());
     }
 }
