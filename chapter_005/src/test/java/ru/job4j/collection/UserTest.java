@@ -39,6 +39,6 @@ public class UserTest {
         map.put(usr2, "2");
 
         System.out.println(map.toString());
-        assertNotEquals(usr.hashCode(), usr2.hashCode());
+        assertEquals(usr.hashCode(), usr2.hashCode());
     }
 }
