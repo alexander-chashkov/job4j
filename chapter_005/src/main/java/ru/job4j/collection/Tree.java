@@ -29,11 +29,16 @@ public class Tree<E>  implements SimpleTree<E> {
         return rsl;
     }
 
+    private Queue<Node<E>> getData() {
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(this.root);
+        return data;
+    }
+
     @Override
     public Optional<Node<E>> findBy(E value) {
         Optional<Node<E>> rsl = Optional.empty();
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
+        Queue<Node<E>> data = getData();
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
             if (el.value.equals(value)) {
@@ -46,8 +51,7 @@ public class Tree<E>  implements SimpleTree<E> {
     }
 
     public boolean isBinary() {
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
+        Queue<Node<E>> data = getData();
         while (!data.isEmpty()) {
             Node<E> el = data.poll();
             if (el.children.size() > 2)
