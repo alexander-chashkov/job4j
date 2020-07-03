@@ -51,8 +51,8 @@ public class UserMerger {
         }
 
         public static Map<User, Set<String>> getMergedListUsers(List<User> listUsers) {
-            Map<String, User> one = new TreeMap<>();
-            Map<User, Set<String>> two = new TreeMap<>();
+            Map<String, User> one = new HashMap<>();
+            Map<User, Set<String>> two = new HashMap<>();
             List<User> mergedList = new ArrayList<>();
             listUsers.forEach(us -> {
                 User temp = us;

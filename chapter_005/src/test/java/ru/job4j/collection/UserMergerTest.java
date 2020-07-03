@@ -27,10 +27,14 @@ public class UserMergerTest {
         listUsers.add(new UserMerger.User("user4").addEmails("ups@pisem.net", "aaa@bbb.ru"));
         listUsers.add(new UserMerger.User("user5").addEmails("xyz@pisem.net"));
         Map<UserMerger.User, Set<String>> mergUsers = UserMerger.User.getMergedListUsers(listUsers);
-        StringBuilder res = new StringBuilder();
-        mergUsers.keySet().stream().forEach(u -> res.append(u.toString()));
-        assertThat(res.toString(), is("user1 ->[aaa@bbb.ru, ups@pisem.net, lol@mail.ru, xxx@ya.ru, foo@gmail.com]" +
-                "user3 ->[vasya@pupkin.com, xyz@pisem.net]"));
+        mergUsers.keySet().stream().forEach(u -> {
+            if (u.getName().equals("user1")) {
+                assertThat(u.toString(), is("user1 ->[aaa@bbb.ru, ups@pisem.net, lol@mail.ru, xxx@ya.ru, foo@gmail.com]"));
+            }
+            if (u.getName().equals("user3")) {
+                assertThat(u.toString(), is("user3 ->[vasya@pupkin.com, xyz@pisem.net]"));
+            }
+        });
     }
 
     @Test
@@ -42,8 +46,13 @@ public class UserMergerTest {
         listUsers.add(new UserMerger.User("user4").addEmails("8@pisem.net", "9@bbb.ru"));
         listUsers.add(new UserMerger.User("user5").addEmails("9@bbb.ru"));
         Map<UserMerger.User, Set<String>> mergUsers = UserMerger.User.getMergedListUsers(listUsers);
-        StringBuilder res = new StringBuilder();
-        mergUsers.keySet().stream().forEach(u -> res.append(u.toString()));
-        assertThat(res.toString(), is("user1 ->[1@ya.ru, 3@mail.ru, 2o@gmail.com]user2 ->[5s@pisem.net, 4@gmail.com]user3 ->[6@pisem.net, 7@pupkin.com]user4 ->[8@pisem.net, 9@bbb.ru]"));
+        mergUsers.keySet().stream().forEach(u -> {
+            if (u.getName().equals("user2")) {
+                assertThat(u.toString(), is("user2 ->[5s@pisem.net, 4@gmail.com]"));
+            }
+            if (u.getName().equals("user1")) {
+                assertThat(u.toString(), is("user1 ->[1@ya.ru, 3@mail.ru, 2o@gmail.com]"));
+            }
+        });
     }
 }
