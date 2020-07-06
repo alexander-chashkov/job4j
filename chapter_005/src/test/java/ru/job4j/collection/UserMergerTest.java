@@ -29,10 +29,10 @@ public class UserMergerTest {
         Map<UserMerger.User, Set<String>> mergUsers = UserMerger.User.getMergedListUsers(listUsers);
         mergUsers.keySet().stream().forEach(u -> {
             if (u.getName().equals("user1")) {
-                assertThat(u.toString(), is("user1 ->[aaa@bbb.ru, ups@pisem.net, lol@mail.ru, xxx@ya.ru, foo@gmail.com]"));
+                assertThat(u.getName() + " ->" + mergUsers.get(u).toString(), is("user1 ->[aaa@bbb.ru, ups@pisem.net, lol@mail.ru, xxx@ya.ru, foo@gmail.com]"));
             }
             if (u.getName().equals("user3")) {
-                assertThat(u.toString(), is("user3 ->[vasya@pupkin.com, xyz@pisem.net]"));
+                assertThat(u.getName() + " ->" + mergUsers.get(u).toString(), is("user3 ->[vasya@pupkin.com, xyz@pisem.net]"));
             }
         });
     }
@@ -48,10 +48,10 @@ public class UserMergerTest {
         Map<UserMerger.User, Set<String>> mergUsers = UserMerger.User.getMergedListUsers(listUsers);
         mergUsers.keySet().stream().forEach(u -> {
             if (u.getName().equals("user2")) {
-                assertThat(u.toString(), is("user2 ->[5s@pisem.net, 4@gmail.com]"));
+                assertThat(u.getName() + " ->" + mergUsers.get(u).toString(), is("user2 ->[5s@pisem.net, 4@gmail.com]"));
             }
             if (u.getName().equals("user1")) {
-                assertThat(u.toString(), is("user1 ->[1@ya.ru, 3@mail.ru, 2o@gmail.com]"));
+                assertThat(u.getName() + " ->" + mergUsers.get(u).toString(), is("user1 ->[1@ya.ru, 3@mail.ru, 2o@gmail.com]"));
             }
         });
     }

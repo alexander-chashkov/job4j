@@ -1,7 +1,7 @@
 package ru.job4j.collection;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Alexander Chashkov
@@ -42,6 +42,14 @@ public class UserMerger {
             return this;
         }
 
+        public void addEmail(String email) {
+            this.emails.add(email);
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
         public Set<String> getEmails() {
             return this.emails;
         }
@@ -51,29 +59,24 @@ public class UserMerger {
         }
 
         public static Map<User, Set<String>> getMergedListUsers(List<User> listUsers) {
-            Map<String, User> one = new HashMap<>();
-            Map<User, Set<String>> two = new HashMap<>();
-            List<User> mergedList = new ArrayList<>();
+            Map<User, Set<String>> result = new HashMap<>();
+            Map<String, User> emails = new HashMap<>();
             listUsers.forEach(us -> {
-                User temp = us;
-                AtomicReference<String> tmpEm = new AtomicReference();
-                us.getEmails().forEach(email -> {
-                    tmpEm.set(email);
-                    if (!one.containsKey(email)) {
-                        one.put(email, temp);
-                    } else {
-                        one.get(email).addEmails(temp.getEmails());
-                        for (String mail2 : one.get(email).getEmails()) {
-                            one.put(mail2, one.get(email));
-                        }
-                        return;
+                us.getEmails().stream().forEach(em -> {
+                    User usr = emails.get(em);
+                    if (usr != null && !usr.equals(us)) {
+                        us.setName(usr.getName());
+                    }
+                    else {
+                        emails.put(em, us);
                     }
 
                 });
-                two.put(one.get(tmpEm.get()), one.get(tmpEm.get()).getEmails());
+                result.putIfAbsent(us, us.getEmails());
+                result.computeIfPresent(us, (key, value) -> us.addEmails(value).getEmails());
             });
 
-            return two;
+            return result;
         }
 
         @Override
@@ -87,6 +90,19 @@ public class UserMerger {
         @Override
         public String toString() {
             return  name + " ->" + emails;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            User user = (User) o;
+            return Objects.equals(name, user.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
         }
     }
 }
