@@ -16,7 +16,7 @@ import java.util.StringJoiner;
 public class Config {
     private final String path;
     private final Map<String, String> values = new HashMap<String, String>();
-    private final String charForComment = "##";
+    private final String charForComment = "#";
     private final String delimiter = "=";
 
     public Config(final String path) {
