@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:\\projects\\job4j\\chapter_005\\src\\main\\java\\ru\\job4j\\io\\");
+        Path start = Paths.get("chapter_005\\src\\main\\java\\ru\\job4j\\io\\");
         //Files.walkFileTree(start, new PrintFiles());
         System.out.println(search(start, "log").toString());
     }
