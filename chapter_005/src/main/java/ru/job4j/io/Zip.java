@@ -20,7 +20,7 @@ public class Zip {
             sources.stream().forEach(s -> {
                 try {
                     zip.putNextEntry(new ZipEntry(s.getPath()));
-                    BufferedInputStream out = new BufferedInputStream(new FileInputStream(s)))
+                    BufferedInputStream out = new BufferedInputStream(new FileInputStream(s));
                     zip.write(out.readAllBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
