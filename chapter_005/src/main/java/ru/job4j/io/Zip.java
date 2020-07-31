@@ -1,6 +1,8 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,12 @@ public class Zip {
         }
     }
 
+    private List<File> searchFiles(ArgZip az) throws IOException  {
+        SearchFiles<Path> seacher = new SearchFiles<>(p -> !p.toFile().getName().endsWith(az.exclude()));
+        Files.walkFileTree(Paths.get(az.directory()), seacher);
+        return seacher.getPaths().stream().map(p -> p.toFile()).collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public static void main(String[] args) {
         new Zip().packSingleFile(
                 new File("./chapter_005/pom.xml"),
@@ -49,8 +57,11 @@ public class Zip {
         );
         ArgZip az = new ArgZip(args);
         try {
-            if (az.valid())
-                new Zip().packFiles(Search.search(Paths.get(az.directory()), az.exclude()).stream().map(p -> p.toFile()).collect(Collectors.toCollection(ArrayList::new)), new File(az.output()));
+            if (az.valid()) {
+                Zip zip = new Zip();
+                zip.packFiles(zip.searchFiles(az), new File(az.output()));
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
