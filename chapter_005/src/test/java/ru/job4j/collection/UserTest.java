@@ -39,6 +39,10 @@ public class UserTest {
         map.put(usr2, "2");
 
         System.out.println(map.toString());
+        System.out.println(1000000 >> 16);
+        System.out.println(Math.pow(2, 16));
+        System.out.println((1000000 - (1000000 % Math.pow(2, 16))) / Math.pow(2, 16));
+        System.out.println(10 << 1);
         assertEquals(usr.hashCode(), usr2.hashCode());
     }
 }
