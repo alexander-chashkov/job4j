@@ -23,8 +23,12 @@ public class EchoServer {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
                         System.out.println(str);
-                        if (str.toUpperCase().contains("msg=Bye".toUpperCase()))
+                        if (str.toUpperCase().contains("msg=Exit".toUpperCase()))
                             exit = true;
+                        else if (str.toUpperCase().contains("msg=Hello".toUpperCase()))
+                            System.out.println("Hello");
+                        else
+                            System.out.println(str.replace("GET /?msg=", "").replace("HTTP/1.1", ""));
                     }
                     out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
                 }
