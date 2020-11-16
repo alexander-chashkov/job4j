@@ -26,9 +26,9 @@ public class EchoServer {
                         if (str.toUpperCase().contains("msg=Exit".toUpperCase()))
                             exit = true;
                         else if (str.toUpperCase().contains("msg=Hello".toUpperCase()))
-                            System.out.println("Hello");
+                            out.write("Hello".getBytes());
                         else
-                            System.out.println(str.replace("GET /?msg=", "").replace("HTTP/1.1", ""));
+                            out.write((str.replace("GET /?msg=", "").replace("HTTP/1.1", "")).getBytes());
                     }
                     out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
                 }
